@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game Jam Timer</title>
+</head>
+<body>
+
+<div id="timer"></div>
+
+<script>
+  const deadline = new Date("2024-03-15T23:59:59").getTime(); // Замените на вашу дату и время окончания джема
+
+  let x = setInterval(function() {
+    let now = new Date().getTime();
+    let t = deadline - now;
+
+    let days = Math.floor(t / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    if (t < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "Time's up!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
